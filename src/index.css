@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: #0a0a0b;
+    color: #fff;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/[0.03] backdrop-blur-xl;
+  }
+  .data-grid {
+    background-image: radial-gradient(circle, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+}
