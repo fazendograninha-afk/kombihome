@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { KombiPlanta Técnica } from './components/KombiPlanta Técnica';
+import { KombiBlueprint } from './components/KombiBlueprint';
 import { Controls } from './components/Controls';
 import { EngineeringPanel } from './components/EngineeringPanel';
 import { SolarSimulator } from './components/SolarSimulator';
-import { Planta TécnicaPDF } from './components/Planta TécnicaPDF';
-import { Tela CheiaViewer } from './components/Tela CheiaViewer';
+import { BlueprintPDF } from './components/BlueprintPDF';
+import { FullscreenViewer } from './components/FullscreenViewer';
 import { DEFAULT_CONFIG, KombiConfig } from './types';
 import {
   Cpu, Ruler, Box, Info, Sparkles, Terminal,
@@ -31,7 +31,7 @@ export default function App() {
       return;
     }
     setIsAiProcessing(true);
-    addLog('Consultando Groq...');
+    addLog('Consultando Groq llama-3.1-8b...');
     try {
       const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -53,11 +53,11 @@ export default function App() {
         addLog('Otimização concluída. Parâmetros atualizados.');
       } else {
         addLog('Sem resultado. Fallback aplicado.');
-        setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPainéis: 3 }));
+        setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPanels: 3 }));
       }
     } catch {
       addLog('Erro de IA. Fallback aplicado.');
-      setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPainéis: 3 }));
+      setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPanels: 3 }));
     } finally {
       setIsAiProcessing(false);
     }
@@ -66,7 +66,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-white font-sans selection:bg-blue-500/30 data-grid">
 
-      {/* Status Bar */}
+      {/* Barra de status */}
       <div className="bg-blue-600/10 border-b border-blue-500/20 px-4 py-1.5 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-mono">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 text-blue-400">
@@ -102,7 +102,7 @@ export default function App() {
               {isAiProcessing ? <Zap className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
               Otimizar com IA
             </button>
-            <Planta TécnicaPDF config={config} />
+            <BlueprintPDF config={config} />
           </div>
         </div>
       </header>
@@ -110,10 +110,9 @@ export default function App() {
       <main className="max-w-[1600px] mx-auto px-6 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-          {/* Left: Visualization */}
+          {/* Esquerda: Visualização */}
           <div className="lg:col-span-8 space-y-8">
             <div className="glass-panel p-2 rounded-3xl shadow-2xl border border-white/5 overflow-hidden">
-              {/* Tab switcher */}
               <div className="flex p-1.5 bg-white/5 rounded-2xl mb-2 gap-2">
                 <button onClick={() => setActiveTab('3d')}
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === '3d' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}>
@@ -129,13 +128,12 @@ export default function App() {
                 <AnimatePresence mode="wait">
                   <motion.div key={activeTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
                     {activeTab === '3d'
-                      ? <Tela CheiaViewer config={config} setConfig={setConfig} />
-                      : <KombiPlanta Técnica config={config} />
+                      ? <FullscreenViewer config={config} setConfig={setConfig} />
+                      : <KombiBlueprint config={config} />
                     }
                   </motion.div>
                 </AnimatePresence>
 
-                {/* AI Log overlay */}
                 {activeTab === '3d' && (
                   <div className="absolute bottom-6 left-6 pointer-events-none">
                     <div className="glass-panel p-4 rounded-2xl border-blue-500/20 w-fit max-w-sm pointer-events-auto">
@@ -145,7 +143,7 @@ export default function App() {
                       <div className="space-y-1 font-mono text-[10px] text-slate-400">
                         {aiLog.map((log, i) => (
                           <div key={i} className="flex gap-2">
-                            <span className="text-blue-500/50">[{new Date().toLocaleTimeString()}]</span>
+                            <span className="text-blue-500/50">[{new Date().toLocaleTimeString('pt-BR')}]</span>
                             <span>{log}</span>
                           </div>
                         ))}
@@ -156,10 +154,9 @@ export default function App() {
               </div>
             </div>
 
-            {/* Engineering Panel */}
             <EngineeringPanel config={config} />
 
-            {/* Solar Simulator collapsible */}
+            {/* Simulação Solar colapsível */}
             <div className="glass-panel rounded-3xl border border-white/5 overflow-hidden">
               <button onClick={() => setShowSolar(v => !v)}
                 className="w-full flex items-center justify-between px-8 py-5 hover:bg-white/3 transition-all">
@@ -174,8 +171,7 @@ export default function App() {
               </button>
               <AnimatePresence>
                 {showSolar && (
-                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }}
-                    className="overflow-hidden">
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
                     <div className="px-2 pb-2">
                       <SolarSimulator config={config} />
                     </div>
@@ -185,7 +181,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Right: Controls + Strategy */}
+          {/* Direita: Controles */}
           <div className="lg:col-span-4 space-y-8">
             <div className="glass-panel p-8 rounded-3xl border border-white/5">
               <Controls config={config} setConfig={setConfig} />

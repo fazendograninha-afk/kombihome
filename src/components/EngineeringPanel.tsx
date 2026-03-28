@@ -48,11 +48,11 @@ export const EngineeringPanel: React.FC<Props> = ({ config }) => {
         </h3>
         <ul className="space-y-4 text-xs text-slate-400 font-medium">
           {[
-            ['Structure', 'Tubo de aço 20x20mm (parede 1.5mm) para a gaiola de elevação.'],
-            ['Reinforcement', 'Solda de reforço no pilar B e travessa traseira do motor.'],
-            ['Sealing', 'Selante PU40 automotivo em todas as interfaces fibra/aço.'],
-            ['Insulation', '3TC ou Rockwool (50mm) para otimização térmica e acústica.'],
-            ['A/C Mounting', 'Base de chapa 2mm para atenuar ressonância no teto.'],
+            ['Estrutura', 'Tubo de aço 20x20mm (parede 1.5mm) para a gaiola de elevação.'],
+            ['Reforço', 'Solda de reforço no pilar B e travessa traseira do motor.'],
+            ['Vedação', 'Selante PU40 automotivo em todas as interfaces fibra/aço.'],
+            ['Isolamento', '3TC ou Rockwool (50mm) para otimização térmica e acústica.'],
+            ['Montagem A/C', 'Base de chapa 2mm para atenuar ressonância no teto.'],
           ].map(([k, v]) => (
             <li key={k} className="flex gap-3 items-start">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0" />

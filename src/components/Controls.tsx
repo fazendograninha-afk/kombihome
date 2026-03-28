@@ -62,9 +62,9 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
             className="w-full h-1.5 bg-white/5 rounded-lg appearance-none cursor-pointer accent-blue-600"
           />
           <div className="flex justify-between text-[10px] font-mono text-slate-600 mt-2">
-            <span>Rear</span>
+            <span>Traseira</span>
             <span className="font-bold text-blue-500">{(config.acPosition * 100).toFixed(0)}%</span>
-            <span>Front</span>
+            <span>Dianteira</span>
           </div>
         </div>
 
@@ -154,7 +154,7 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
 
         <div className="pt-6 border-t border-white/5">
           <p className="text-[9px] text-slate-600 italic leading-relaxed font-medium uppercase tracking-wider">
-            System Note: Integridade estrutural verificada para cargas laterais de até 0.8g. CG elevado detectado.
+            Nota: Integridade estrutural verificada para cargas laterais até 0.8g. CG elevado detectado.
           </p>
         </div>
       </div>

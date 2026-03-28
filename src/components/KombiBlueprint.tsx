@@ -3,7 +3,7 @@ import { KombiConfig } from '../types';
 
 interface Props { config: KombiConfig; }
 
-export const KombiPlanta Técnica: React.FC<Props> = ({ config }) => {
+export const KombiBlueprint: React.FC<Props> = ({ config }) => {
   const scale = 80;
   const width = 1.7 * scale;
   const length = 4.4 * scale;
@@ -22,8 +22,8 @@ export const KombiPlanta Técnica: React.FC<Props> = ({ config }) => {
   return (
     <div className="w-full bg-[#0a192f] p-8 rounded-xl border-2 border-blue-900/50 shadow-2xl font-mono text-xs overflow-x-auto">
       <h3 className="text-blue-400 uppercase tracking-widest mb-6 font-bold border-b border-blue-900/50 pb-2 flex justify-between items-center">
-        <span>KombiHome Creator by MaicknucleaR</span>
-        <span className="text-[10px] text-blue-600">Planta Técnica v2.5 // Dark Mode</span>
+        <span>KombiHome Creator por MaicknucleaR</span>
+        <span className="text-[10px] text-blue-600">Planta Técnica v2.5 // Modo Escuro</span>
       </h3>
 
       <div className="flex flex-col gap-12 min-w-[600px]">
@@ -63,7 +63,7 @@ export const KombiPlanta Técnica: React.FC<Props> = ({ config }) => {
             </g>
 
             <rect x={tankX - tankLength / 2} y={tankY_Side - tankHeight / 2} width={tankLength} height={tankHeight} fill="#3b82f6" opacity="0.4" stroke="#60a5fa" strokeWidth="1" rx="4" />
-            <text x={tankX} y={tankY_Side + tankHeight / 2 + 12} textAnchor="middle" fill="#60a5fa" fontSize="9" fontWeight="bold">TANK {config.waterTankCapacity}L</text>
+            <text x={tankX} y={tankY_Side + tankHeight / 2 + 12} textAnchor="middle" fill="#60a5fa" fontSize="9" fontWeight="bold">TANQUE {config.waterTankCapacity}L</text>
 
             <line x1={50 + length - bPillarPos - 40 - elevatedLength} y1="40" x2={50 + length - bPillarPos - 40} y2="40" stroke="#60a5fa" strokeWidth="1" />
             <text x={50 + length - bPillarPos - 40 - elevatedLength / 2} y="35" textAnchor="middle" fill="#60a5fa" fontSize="10" fontWeight="bold">{config.roofLength}m</text>
@@ -71,7 +71,7 @@ export const KombiPlanta Técnica: React.FC<Props> = ({ config }) => {
         </div>
 
         <div className="relative">
-          <span className="absolute -top-4 left-0 text-blue-400/70 font-bold uppercase tracking-widest text-[10px]">Vista Superior (Vista de Cima)</span>
+          <span className="absolute -top-4 left-0 text-blue-400/70 font-bold uppercase tracking-widest text-[10px]">Vista Superior</span>
           <svg width={length + 150} height={width + 100} viewBox={`0 0 ${length + 150} ${width + 100}`}>
             <rect width="100%" height="100%" fill="url(#grid)" />
             <rect x="50" y="50" width={length} height={width} fill="#1e293b" stroke="#3b82f6" strokeWidth="2" rx="15" />
