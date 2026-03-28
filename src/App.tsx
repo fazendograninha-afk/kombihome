@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { KombiBlueprint } from './components/KombiBlueprint';
+import { KombiPlanta Técnica } from './components/KombiPlanta Técnica';
 import { Controls } from './components/Controls';
 import { EngineeringPanel } from './components/EngineeringPanel';
 import { SolarSimulator } from './components/SolarSimulator';
-import { BlueprintPDF } from './components/BlueprintPDF';
-import { FullscreenViewer } from './components/FullscreenViewer';
+import { Planta TécnicaPDF } from './components/Planta TécnicaPDF';
+import { Tela CheiaViewer } from './components/Tela CheiaViewer';
 import { DEFAULT_CONFIG, KombiConfig } from './types';
 import {
   Cpu, Ruler, Box, Info, Sparkles, Terminal,
@@ -20,18 +20,18 @@ export default function App() {
   const [config, setConfig] = useState<KombiConfig>(DEFAULT_CONFIG);
   const [activeTab, setActiveTab] = useState<Tab>('3d');
   const [isAiProcessing, setIsAiProcessing] = useState(false);
-  const [aiLog, setAiLog] = useState<string[]>(['System initialized...', 'Awaiting input...']);
+  const [aiLog, setAiLog] = useState<string[]>(['Sistema inicializado...', 'Aguardando entrada...']);
   const [showSolar, setShowSolar] = useState(false);
 
   const addLog = (msg: string) => setAiLog(prev => [...prev.slice(-4), msg]);
 
   const handleAiOptimize = async () => {
     if (!GROQ_API_KEY) {
-      addLog('Error: VITE_GROQ_API_KEY not set.');
+      addLog('Erro: VITE_GROQ_API_KEY não configurada.');
       return;
     }
     setIsAiProcessing(true);
-    addLog('Querying Groq llama-3.1-8b...');
+    addLog('Consultando Groq...');
     try {
       const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
         method: 'POST',
@@ -50,14 +50,14 @@ export default function App() {
       const result = JSON.parse(data.choices?.[0]?.message?.content ?? '{}');
       if (result.roofHeight) {
         setConfig(prev => ({ ...prev, ...result }));
-        addLog('Optimization complete. Parameters updated.');
+        addLog('Otimização concluída. Parâmetros atualizados.');
       } else {
-        addLog('No result. Fallback applied.');
-        setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPanels: 3 }));
+        addLog('Sem resultado. Fallback aplicado.');
+        setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPainéis: 3 }));
       }
     } catch {
-      addLog('AI Error. Fallback applied.');
-      setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPanels: 3 }));
+      addLog('Erro de IA. Fallback aplicado.');
+      setConfig(prev => ({ ...prev, roofHeight: 0.45, solarPainéis: 3 }));
     } finally {
       setIsAiProcessing(false);
     }
@@ -70,12 +70,12 @@ export default function App() {
       <div className="bg-blue-600/10 border-b border-blue-500/20 px-4 py-1.5 flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-mono">
         <div className="flex items-center gap-4">
           <span className="flex items-center gap-1.5 text-blue-400">
-            <Activity className="w-3 h-3 animate-pulse" /> AI Engine: Active
+            <Activity className="w-3 h-3 animate-pulse" /> Motor IA: Ativo
           </span>
           <span className="text-slate-500">|</span>
           <span className="text-slate-400">Groq · llama-3.1-8b-instant</span>
           <span className="text-slate-500">|</span>
-          <span className="text-slate-400">Panels: {config.solarPanels}x · Roof: {config.roofHeight}m · Tank: {config.waterTankCapacity}L</span>
+          <span className="text-slate-400">Painéis: {config.solarPanels}x · Teto: {config.roofHeight}m · Tanque: {config.waterTankCapacity}L</span>
         </div>
         <div className="flex items-center gap-4 text-slate-400">
           <span>FPS: 60</span>
@@ -93,16 +93,16 @@ export default function App() {
               <h1 className="text-2xl font-black tracking-tighter uppercase italic">
                 Kombi<span className="text-blue-500">Home</span> Creator
               </h1>
-              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 leading-none">by MaicknucleaR — Beto's Car Edition</p>
+              <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-slate-500 leading-none">por MaicknucleaR — Edição do Carro do Beto</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <button onClick={handleAiOptimize} disabled={isAiProcessing}
               className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white px-5 py-2.5 rounded-xl text-xs font-bold transition-all shadow-lg shadow-blue-600/20 uppercase tracking-wider">
               {isAiProcessing ? <Zap className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
-              AI Optimize
+              Otimizar com IA
             </button>
-            <BlueprintPDF config={config} />
+            <Planta TécnicaPDF config={config} />
           </div>
         </div>
       </header>
@@ -117,11 +117,11 @@ export default function App() {
               <div className="flex p-1.5 bg-white/5 rounded-2xl mb-2 gap-2">
                 <button onClick={() => setActiveTab('3d')}
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === '3d' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}>
-                  <Box className="w-4 h-4" /> 3D Render
+                  <Box className="w-4 h-4" /> Render 3D
                 </button>
                 <button onClick={() => setActiveTab('blueprint')}
                   className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'blueprint' ? 'bg-blue-600 text-white shadow-lg' : 'text-slate-500 hover:text-slate-300'}`}>
-                  <Ruler className="w-4 h-4" /> Blueprint
+                  <Ruler className="w-4 h-4" /> Planta Técnica
                 </button>
               </div>
 
@@ -129,8 +129,8 @@ export default function App() {
                 <AnimatePresence mode="wait">
                   <motion.div key={activeTab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.3 }}>
                     {activeTab === '3d'
-                      ? <FullscreenViewer config={config} setConfig={setConfig} />
-                      : <KombiBlueprint config={config} />
+                      ? <Tela CheiaViewer config={config} setConfig={setConfig} />
+                      : <KombiPlanta Técnica config={config} />
                     }
                   </motion.div>
                 </AnimatePresence>
@@ -140,7 +140,7 @@ export default function App() {
                   <div className="absolute bottom-6 left-6 pointer-events-none">
                     <div className="glass-panel p-4 rounded-2xl border-blue-500/20 w-fit max-w-sm pointer-events-auto">
                       <div className="flex items-center gap-2 mb-2 text-blue-400 font-mono text-[10px] uppercase font-bold">
-                        <Terminal className="w-3 h-3" /> Groq Logs
+                        <Terminal className="w-3 h-3" /> Logs do Groq
                       </div>
                       <div className="space-y-1 font-mono text-[10px] text-slate-400">
                         {aiLog.map((log, i) => (
@@ -165,7 +165,7 @@ export default function App() {
                 className="w-full flex items-center justify-between px-8 py-5 hover:bg-white/3 transition-all">
                 <span className="flex items-center gap-3 text-sm font-black uppercase tracking-[0.2em] text-white">
                   <Sun className="w-4 h-4 text-yellow-400" />
-                  Solar Simulation
+                  Simulação Solar
                   <span className="text-[9px] bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 px-2 py-0.5 rounded-full font-bold uppercase tracking-widest">
                     {config.solarPanels}x 100W
                   </span>
@@ -196,14 +196,14 @@ export default function App() {
                 <Sparkles className="w-24 h-24" />
               </div>
               <h4 className="font-black text-lg mb-4 flex items-center gap-2 uppercase tracking-tighter">
-                <Zap className="w-6 h-6 fill-white" /> AI Strategy
+                <Zap className="w-6 h-6 fill-white" /> Estratégia IA
               </h4>
               <p className="text-sm text-blue-100 leading-relaxed font-medium">
                 Otimização paramétrica baseada em eficiência térmica e aerodinâmica. Teto {config.roofHeight}m validado para -12% arrasto vs. modelos convencionais.
               </p>
               <div className="mt-6 pt-6 border-t border-white/10 flex justify-between items-center text-[10px] uppercase font-bold tracking-widest">
-                <span>Status: Optimized</span>
-                <span className="text-blue-200">Confidence: 98.4%</span>
+                <span>Status: Otimizado</span>
+                <span className="text-blue-200">Confiança: 98.4%</span>
               </div>
             </div>
 
@@ -213,8 +213,8 @@ export default function App() {
               </h4>
               <ul className="space-y-4 text-[11px] text-slate-400 font-medium uppercase tracking-wider">
                 {[
-                  ['01', 'Simulação CFD para validar rampa frontal.'],
-                  ['02', 'Autonomia solar por irradiância local ↗ Solar Sim.'],
+                  ['01', 'Simulação CFD para validar a rampa frontal.'],
+                  ['02', 'Autonomia solar por irradiância local ↗ Simulação Solar.'],
                   ['03', 'Análise de tensões nas colunas B e C.'],
                 ].map(([n, t]) => (
                   <li key={n} className="flex gap-3"><span className="text-blue-500">{n}</span><span>{t}</span></li>
@@ -230,7 +230,7 @@ export default function App() {
           <div className="flex items-center gap-3">
             <Cpu className="w-5 h-5 text-blue-500" />
             <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">
-              KombiHome Creator by MaicknucleaR // Groq AI + Interior 3D + Solar Sim + PDF Export
+              KombiHome Creator por MaicknucleaR // Groq IA + Interior 3D + Simulação Solar + Export PDF
             </p>
           </div>
         </div>

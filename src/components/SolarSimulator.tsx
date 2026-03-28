@@ -59,7 +59,7 @@ export const SolarSimulator: React.FC<Props> = ({ config }) => {
     <div className="glass-panel p-8 rounded-3xl border border-white/5 space-y-8">
       <h3 className="text-sm font-black flex items-center gap-3 text-white uppercase tracking-[0.2em]">
         <Sun className="w-4 h-4 text-yellow-400" />
-        Solar Simulation — {panelCount}x {PANEL_WATT_PEAK}W Panel{panelCount > 1 ? 's' : ''}
+        Simulação Solar — {panelCount}x {PANEL_WATT_PEAK}W Panel{panelCount > 1 ? 's' : ''}
       </h3>
 
       {/* Região */}

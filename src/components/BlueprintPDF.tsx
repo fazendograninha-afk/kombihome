@@ -5,7 +5,7 @@ import { FileDown, Loader2 } from 'lucide-react';
 interface Props { config: KombiConfig; }
 
 // Gera SVG como string para exportar como PDF via browser print
-function buildBlueprintSVG(config: KombiConfig): string {
+function buildPlanta TécnicaSVG(config: KombiConfig): string {
   const scale = 80;
   const W = 700;
   const H = 900;
@@ -48,11 +48,11 @@ function buildBlueprintSVG(config: KombiConfig): string {
 
   <!-- Title block -->
   <text x="30" y="30" fill="#60a5fa" font-size="14" font-family="monospace" font-weight="bold">KOMBIHOME CREATOR — BLUEPRINT TÉCNICO</text>
-  <text x="30" y="48" fill="#3b82f6" font-size="9" font-family="monospace">by MaicknucleaR (Beto's Car Edition) // Escala 1:50 // Gerado automaticamente</text>
+  <text x="30" y="48" fill="#3b82f6" font-size="9" font-family="monospace">por MaicknucleaR — Edição Beto // Escala 1:50 // Gerado automaticamente</text>
   <line x1="20" y1="56" x2="${W - 20}" y2="56" stroke="#1e3a8a" stroke-width="1"/>
 
   <!-- Config summary -->
-  <text x="30" y="72" fill="#475569" font-size="8" font-family="monospace">TETO: ${config.roofHeight}m | COMP. ELEV: ${config.roofLength}m | PAINEL SOLAR: ${config.solarPanels}x | TANQUE: ${config.waterTankCapacity}L | AC: ${(config.acPosition * 100).toFixed(0)}%</text>
+  <text x="30" y="72" fill="#475569" font-size="8" font-family="monospace">TETO: ${config.roofHeight}m | ELEV: ${config.roofLength}m | SOLAR: ${config.solarPanels}x | TANQUE: ${config.waterTankCapacity}L | AR-COND: ${(config.acPosition * 100).toFixed(0)}%</text>
 
   <!-- VISTA LATERAL -->
   <text x="30" y="100" fill="#60a5fa" font-size="9" font-family="monospace" font-weight="bold">VISTA LATERAL</text>
@@ -121,17 +121,17 @@ function buildBlueprintSVG(config: KombiConfig): string {
   <!-- Title block bottom -->
   <line x1="20" y1="${H - 50}" x2="${W - 20}" y2="${H - 50}" stroke="#1e3a8a" stroke-width="1"/>
   <text x="30" y="${H - 32}" fill="#334155" font-size="8" font-family="monospace">KOMBIHOME ENGINEERING // REV.1.0 // ${new Date().toLocaleDateString('pt-BR')}</text>
-  <text x="${W - 30}" y="${H - 32}" text-anchor="end" fill="#334155" font-size="8" font-family="monospace">SCALE 1:50</text>
+  <text x="${W - 30}" y="${H - 32}" text-anchor="end" fill="#334155" font-size="8" font-family="monospace">ESCALA 1:50</text>
 </svg>`;
 }
 
-export const BlueprintPDF: React.FC<Props> = ({ config }) => {
+export const Planta TécnicaPDF: React.FC<Props> = ({ config }) => {
   const [loading, setLoading] = React.useState(false);
 
   const handleExport = async () => {
     setLoading(true);
     try {
-      const svgStr = buildBlueprintSVG(config);
+      const svgStr = buildPlanta TécnicaSVG(config);
       const blob = new Blob([svgStr], { type: 'image/svg+xml' });
       const url = URL.createObjectURL(blob);
 
@@ -139,7 +139,7 @@ export const BlueprintPDF: React.FC<Props> = ({ config }) => {
       const win = window.open('', '_blank');
       if (!win) return;
       win.document.write(`
-        <!DOCTYPE html><html><head><title>KombiHome Blueprint</title>
+        <!DOCTYPE html><html><head><title>KombiHome Planta Técnica</title>
         <style>
           * { margin:0; padding:0; box-sizing:border-box; }
           body { background:#0a192f; display:flex; justify-content:center; align-items:flex-start; padding:20px; }
@@ -169,7 +169,7 @@ export const BlueprintPDF: React.FC<Props> = ({ config }) => {
       {loading
         ? <Loader2 className="w-4 h-4 animate-spin" />
         : <FileDown className="w-4 h-4" />}
-      Export PDF
+      Exportar PDF
     </button>
   );
 };

@@ -3,7 +3,7 @@ import { KombiConfig } from '../types';
 
 interface Props { config: KombiConfig; }
 
-export const KombiBlueprint: React.FC<Props> = ({ config }) => {
+export const KombiPlanta Técnica: React.FC<Props> = ({ config }) => {
   const scale = 80;
   const width = 1.7 * scale;
   const length = 4.4 * scale;
@@ -23,7 +23,7 @@ export const KombiBlueprint: React.FC<Props> = ({ config }) => {
     <div className="w-full bg-[#0a192f] p-8 rounded-xl border-2 border-blue-900/50 shadow-2xl font-mono text-xs overflow-x-auto">
       <h3 className="text-blue-400 uppercase tracking-widest mb-6 font-bold border-b border-blue-900/50 pb-2 flex justify-between items-center">
         <span>KombiHome Creator by MaicknucleaR</span>
-        <span className="text-[10px] text-blue-600">Blueprint v2.5 // Dark Mode</span>
+        <span className="text-[10px] text-blue-600">Planta Técnica v2.5 // Dark Mode</span>
       </h3>
 
       <div className="flex flex-col gap-12 min-w-[600px]">
@@ -71,7 +71,7 @@ export const KombiBlueprint: React.FC<Props> = ({ config }) => {
         </div>
 
         <div className="relative">
-          <span className="absolute -top-4 left-0 text-blue-400/70 font-bold uppercase tracking-widest text-[10px]">Vista Superior (Top View)</span>
+          <span className="absolute -top-4 left-0 text-blue-400/70 font-bold uppercase tracking-widest text-[10px]">Vista Superior (Vista de Cima)</span>
           <svg width={length + 150} height={width + 100} viewBox={`0 0 ${length + 150} ${width + 100}`}>
             <rect width="100%" height="100%" fill="url(#grid)" />
             <rect x="50" y="50" width={length} height={width} fill="#1e293b" stroke="#3b82f6" strokeWidth="2" rx="15" />

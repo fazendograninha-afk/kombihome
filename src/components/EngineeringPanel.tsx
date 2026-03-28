@@ -14,27 +14,27 @@ export const EngineeringPanel: React.FC<Props> = ({ config }) => {
       <div className="glass-panel p-8 rounded-3xl border border-white/5">
         <h3 className="text-sm font-black mb-6 flex items-center gap-3 text-white uppercase tracking-[0.2em]">
           <ShieldAlert className="w-4 h-4 text-amber-500" />
-          Parametric Impact Analysis
+          Análise de Impacto Paramétrico
         </h3>
         <div className="space-y-4">
           <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
             <div className="flex items-center gap-3">
               <Weight className="w-4 h-4 text-slate-500" />
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Estimated Payload</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Carga Estimada</span>
             </div>
             <span className="font-mono text-sm font-bold text-white">~{extraWeight.toFixed(0)} kg</span>
           </div>
           <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
             <div className="flex items-center gap-3">
               <Layers className="w-4 h-4 text-slate-500" />
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">CG Vertical Shift</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Deslocamento Vertical do CG</span>
             </div>
             <span className="font-mono text-sm font-bold text-amber-500">+{cgShift} m</span>
           </div>
           <div className="flex justify-between items-center p-4 bg-white/5 rounded-2xl border border-white/5">
             <div className="flex items-center gap-3">
               <Wind className="w-4 h-4 text-slate-500" />
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Drag Coefficient Δ</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Variação Coef. Arrasto Δ</span>
             </div>
             <span className="font-mono text-sm font-bold text-red-500">+{dragIncrease}%</span>
           </div>
@@ -44,7 +44,7 @@ export const EngineeringPanel: React.FC<Props> = ({ config }) => {
       <div className="glass-panel p-8 rounded-3xl border border-white/5">
         <h3 className="text-sm font-black mb-6 flex items-center gap-3 text-white uppercase tracking-[0.2em]">
           <Ruler className="w-4 h-4 text-blue-500" />
-          Fabrication Directives
+          Diretrizes de Fabricação
         </h3>
         <ul className="space-y-4 text-xs text-slate-400 font-medium">
           {[

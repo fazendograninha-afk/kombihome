@@ -16,13 +16,13 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
     <div className="h-full">
       <h3 className="text-sm font-black mb-8 flex items-center gap-3 text-white uppercase tracking-[0.2em] border-b border-white/10 pb-4">
         <Settings className="w-4 h-4 text-blue-500" />
-        Design Parameters
+        Parâmetros de Design
       </h3>
 
       <div className="space-y-8">
         <div>
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-2 mb-3 tracking-widest">
-            <Maximize2 className="w-3 h-3 text-blue-500/50" /> Roof Elevation (m)
+            <Maximize2 className="w-3 h-3 text-blue-500/50" /> Elevação do Teto (m)
           </label>
           <input type="range" min="0.2" max="0.8" step="0.05"
             value={config.roofHeight}
@@ -38,7 +38,7 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
 
         <div>
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-2 mb-3 tracking-widest">
-            <MoveHorizontal className="w-3 h-3 text-blue-500/50" /> Roof Length (m)
+            <MoveHorizontal className="w-3 h-3 text-blue-500/50" /> Comprimento da Elevação (m)
           </label>
           <input type="range" min="1.5" max="3.2" step="0.1"
             value={config.roofLength}
@@ -54,7 +54,7 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
 
         <div>
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-2 mb-3 tracking-widest">
-            <Wind className="w-3 h-3 text-blue-500/50" /> A/C Unit Position
+            <Wind className="w-3 h-3 text-blue-500/50" /> Posição do Ar-Condicionado
           </label>
           <input type="range" min="0" max="1" step="0.01"
             value={config.acPosition}
@@ -70,7 +70,7 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
 
         <div>
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-2 mb-3 tracking-widest">
-            <Sun className="w-3 h-3 text-blue-500/50" /> Solar Array (Units)
+            <Sun className="w-3 h-3 text-blue-500/50" /> Painéis Solares (Qtd)
           </label>
           <div className="flex gap-2">
             {[1, 2, 3, 4].map((n) => (
@@ -88,26 +88,26 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
 
         <div>
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-2 mb-3 tracking-widest">
-            <Droplets className="w-3 h-3 text-blue-500/50" /> Water Capacity (L)
+            <Droplets className="w-3 h-3 text-blue-500/50" /> Capacidade de Água (L)
           </label>
           <select value={config.waterTankCapacity}
             onChange={(e) => update('waterTankCapacity', parseInt(e.target.value))}
             className="w-full p-3 bg-white/5 border border-white/5 rounded-xl text-xs font-bold text-slate-300 outline-none focus:ring-2 focus:ring-blue-500/50 transition-all appearance-none">
-            <option value={40} className="bg-[#141417]">40L (Compact)</option>
-            <option value={60} className="bg-[#141417]">60L (Standard)</option>
-            <option value={80} className="bg-[#141417]">80L (Max)</option>
-            <option value={100} className="bg-[#141417]">100L (Expedition)</option>
+            <option value={40} className="bg-[#141417]">40L (Compacto)</option>
+            <option value={60} className="bg-[#141417]">60L (Padrão)</option>
+            <option value={80} className="bg-[#141417]">80L (Máximo)</option>
+            <option value={100} className="bg-[#141417]">100L (Expedição)</option>
           </select>
         </div>
 
         <div className="pt-4 border-t border-white/5">
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center gap-2 mb-4 tracking-widest">
-            <Palette className="w-3 h-3 text-blue-500/50" /> Body Finish (Two-Tone)
+            <Palette className="w-3 h-3 text-blue-500/50" /> Acabamento (Bicolor)
           </label>
           <div className="space-y-4">
             {[
-              { label: 'Upper Section', key: 'upperColor' as const },
-              { label: 'Lower Section', key: 'lowerColor' as const },
+              { label: 'Parte Superior', key: 'upperColor' as const },
+              { label: 'Parte Inferior', key: 'lowerColor' as const },
             ].map(({ label, key }) => (
               <div key={key} className="flex items-center justify-between">
                 <span className="text-[9px] font-bold text-slate-400 uppercase">{label}</span>
@@ -123,7 +123,7 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
         <div className="pt-4 border-t border-white/5">
           <label className="text-[10px] font-black text-slate-500 uppercase flex items-center justify-between gap-2 mb-4 tracking-widest">
             <span className="flex items-center gap-2">
-              <Layout className="w-3 h-3 text-blue-500/50" /> Interior Visualization
+              <Layout className="w-3 h-3 text-blue-500/50" /> Visualização Interior
             </span>
             <button onClick={() => update('showInterior', !config.showInterior)}
               className={`px-3 py-1 rounded-full text-[9px] font-black transition-all ${
@@ -136,9 +136,9 @@ export const Controls: React.FC<Props> = ({ config, setConfig }) => {
           {config.showInterior && (
             <div className="grid grid-cols-3 gap-3">
               {[
-                { label: 'Bed', key: 'bedColor' as const },
-                { label: 'Kitchen', key: 'kitchenColor' as const },
-                { label: 'Seating', key: 'seatingColor' as const },
+                { label: 'Cama', key: 'bedColor' as const },
+                { label: 'Cozinha', key: 'kitchenColor' as const },
+                { label: 'Banquetas', key: 'seatingColor' as const },
               ].map(({ label, key }) => (
                 <div key={key} className="space-y-2">
                   <label className="text-[8px] font-bold text-slate-600 uppercase tracking-tighter">{label}</label>

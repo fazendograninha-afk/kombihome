@@ -172,7 +172,7 @@ export const KombiViewer3D: React.FC<ModelProps> = ({ config }) => (
     <div className="absolute top-6 left-6 pointer-events-none">
       <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-lg">
         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-        <span className="text-[10px] font-black uppercase tracking-widest text-white/70">Real-time Simulation</span>
+        <span className="text-[10px] font-black uppercase tracking-widest text-white/70">Simulação em Tempo Real</span>
       </div>
     </div>
   </div>
